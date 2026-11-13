@@ -211,6 +211,66 @@ td input:hover,td input:focus{border-color:#49658d}
   *,*::before,*::after{transition:none!important;scroll-behavior:auto!important}
 }
 
+
+/* Theme switch and light palette */
+.theme-toggle{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-width:42px;padding:7px 11px;font-size:18px;line-height:1}
+.theme-toggle svg{width:19px;height:19px;display:block}
+.theme-toggle .sun-icon{display:none}
+:root[data-theme="light"] .theme-toggle .moon-icon{display:none}
+:root[data-theme="light"] .theme-toggle .sun-icon{display:block}
+#tradeLogFooter{margin-top:42px;padding:18px 8px 8px;border-top:1px solid var(--line);text-align:center;color:var(--mu);font-size:12px}
+#tradeLogFooter .footer-title{font-weight:600;color:var(--ink);margin-bottom:3px}
+#tradeLogFooter .footer-links{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin:8px 0}
+#tradeLogFooter a{color:var(--bl);text-decoration:none}
+#tradeLogFooter a:hover{text-decoration:underline}
+:root[data-theme="light"]{
+  color-scheme:light;
+  --bg:#f2f5f3;--s:#fff;--ink:#14201c;--mu:#5d6b66;--line:#d9dfdc;
+  --g:#0f7b63;--bl:#2563eb;--l:#b4412f;
+  --gf:rgba(15,123,99,.12);--lf:rgba(180,65,47,.12);
+}
+:root[data-theme="light"] body{background:var(--bg);color:var(--ink)}
+:root[data-theme="light"] h2{color:var(--ink)}
+:root[data-theme="light"] .btn{background:var(--g);color:#fff;border-color:var(--g);box-shadow:none}
+:root[data-theme="light"] .btn.ghost{background:#fff;color:var(--ink);border-color:var(--line)}
+:root[data-theme="light"] .btn.ghost:hover{background:#f2f6f3;border-color:#b8c7bf}
+:root[data-theme="light"] .drop{background:#fff;border-color:#cbd8d0;box-shadow:0 10px 30px rgba(20,32,28,.06)}
+:root[data-theme="light"] .drop.on{background:var(--gf);border-color:var(--g)}
+:root[data-theme="light"] .hero{background:linear-gradient(145deg,#fff,#f5f8f6);border-color:var(--line);box-shadow:0 10px 30px rgba(20,32,28,.06)}
+:root[data-theme="light"] .kpi div{background:#fff;border-color:var(--line)}
+:root[data-theme="light"] .kpi div:hover{border-color:#9fb5a8}
+:root[data-theme="light"] .tabs{background:#e9efeb;border-color:var(--line)}
+:root[data-theme="light"] .tabs button{color:#5d6b66}
+:root[data-theme="light"] .tabs button[aria-selected="true"]{color:#075b47;background:rgba(15,123,99,.10);border-color:rgba(15,123,99,.24)}
+:root[data-theme="light"] .tabs button:hover:not([aria-selected="true"]){background:#dfe9e3;color:#14201c}
+:root[data-theme="light"] .scroll{background:#fff;border-color:var(--line)}
+:root[data-theme="light"] th{color:#52635b;background:#edf3ef}
+:root[data-theme="light"] th,:root[data-theme="light"] td{border-bottom-color:#e1e8e3}
+:root[data-theme="light"] tbody tr:hover,:root[data-theme="light"] table tr:hover td{background:rgba(15,123,99,.045)}
+:root[data-theme="light"] td input,:root[data-theme="light"] td select{background:#fff;color:var(--ink);border-color:#d5dfd9}
+:root[data-theme="light"] td input:hover,:root[data-theme="light"] td input:focus{border-color:#9fb5a8}
+:root[data-theme="light"] .sys select,:root[data-theme="light"] .sys input{background:#fff;color:var(--ink);border-color:#d5dfd9}
+:root[data-theme="light"] .pgn button{background:#fff;color:var(--ink);border-color:var(--line)}
+:root[data-theme="light"] .pgn button.cur{background:var(--g);color:#fff;border-color:var(--g)}
+:root[data-theme="light"] .bar{background:#e0e8e3}
+:root[data-theme="light"] .day{background:#fff;border-color:var(--line)}
+:root[data-theme="light"] .day.pg{background:rgba(15,123,99,.10);border-color:rgba(15,123,99,.25)}
+:root[data-theme="light"] .day.pl{background:rgba(180,65,47,.09);border-color:rgba(180,65,47,.22)}
+:root[data-theme="light"] .day.td{outline-color:#2563eb}
+:root[data-theme="light"] .wk{background:#f8faf9;border-color:#cbd8d0}
+:root[data-theme="light"] .trio{background:#fff;border-color:var(--line)}
+:root[data-theme="light"] .trio div{border-color:var(--line)}
+:root[data-theme="light"] .chart .zero{stroke:#82948a}
+:root[data-theme="light"] .chart .gd{stroke:#82948a;stroke-opacity:.28}
+:root[data-theme="light"] .gg .tr{stroke:#d9e3dc}
+:root[data-theme="light"] .gg .nd{stroke:#fff}
+:root[data-theme="light"] .fl{box-shadow:0 5px 18px rgba(20,32,28,.16)}
+
+:root[data-theme="dark"] .wk.pg{background:rgba(24,199,138,.14);border-color:rgba(24,199,138,.3);color:#18c78a}
+:root[data-theme="dark"] .wk.pl{background:rgba(255,100,116,.14);border-color:rgba(255,100,116,.3);color:#ff6474}
+:root[data-theme="light"] .wk.pg{background:rgba(15,123,99,.10);border-color:rgba(15,123,99,.28);color:#0f7b63}
+:root[data-theme="light"] .wk.pl{background:rgba(180,65,47,.09);border-color:rgba(180,65,47,.25);color:#b4412f}
+#hr .ax{font-size:9px}
 </style>
 </head>
 <body>
@@ -218,6 +278,7 @@ td input:hover,td input:focus{border-color:#49658d}
 <header>
   <div><h1>دفتر معاملات</h1><p id="acct">هنوز گزارشی اضافه نشده است</p></div>
   <div class="act">
+    <button id="themeToggle" class="btn ghost theme-toggle" type="button" aria-label="تغییر به تم روشن" title="تغییر تم" aria-pressed="false"><svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.2 15.3A8.5 8.5 0 0 1 8.7 3.8 8.6 8.6 0 1 0 20.2 15.3Z"/></svg><svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg></button>
     <select id="acs" class="btn ghost" aria-label="انتخاب حساب" hidden></select>
     <label class="btn">افزودن گزارش<input id="file" type="file" accept=".htm,.html" multiple hidden></label>
     <button id="clr" class="btn ghost" hidden>پاک کردن داده‌ها</button>
@@ -233,7 +294,7 @@ td input:hover,td input:focus{border-color:#49658d}
 </section>
 
 <main id="app" hidden>
-  <nav class="tabs" role="tablist"><button role="tab" data-t="dash" aria-selected="true">داشبورد</button><button role="tab" data-t="cal" aria-selected="false">تقویم</button><button role="tab" data-t="dp" aria-selected="false">واریز و برداشت</button><button role="tab" data-t="kp" aria-selected="false">شاخص‌ها</button><button role="tab" data-t="st" aria-selected="false">استراتژی</button></nav>
+  <nav class="tabs" role="tablist"><button role="tab" data-t="dash" aria-selected="true">داشبورد</button><button role="tab" data-t="cal" aria-selected="false">تقویم</button><button role="tab" data-t="dp" aria-selected="false">واریز و برداشت</button><button role="tab" data-t="kp" aria-selected="false">شاخص‌ها</button><button role="tab" data-t="st" aria-selected="false">استراتژی</button><button role="tab" data-t="tr" aria-selected="false">معاملات</button></nav>
   <div id="t-dash">
   <section class="hero">
     <div class="sub">سود و زیان خالص (بعد از کمیسیون و سواپ)</div>
@@ -255,10 +316,12 @@ td input:hover,td input:focus{border-color:#49658d}
   </div>
   <h2>عملکرد استراتژی‌ها</h2><div class="scroll" id="stg"></div><ul id="stn"></ul>
   <h2>حد ضرر و حد سود</h2><div class="two"><div class="scroll" id="gsl"></div><div class="scroll" id="gtp"></div></div>
-  <h2>معاملات</h2>
-  <div class="scroll"><table id="tb"></table></div>
-  <div class="pgn" id="pgn"></div>
-  <p><button class="btn ghost" id="more" hidden>نمایش همه</button></p>
+  </div>
+  <div id="t-tr" hidden>
+    <h2>معاملات</h2>
+    <div class="scroll"><table id="tb"></table></div>
+    <div class="pgn" id="pgn"></div>
+    <p><button class="btn ghost" id="more" hidden>نمایش همه</button></p>
   </div>
   <div id="t-cal" hidden>
     <div class="cn"><h2 id="cm"></h2><button class="btn ghost" id="cp">ماه قبل</button><button class="btn ghost" id="ct">امروز</button><button class="btn ghost" id="cl">آخرین معامله</button><button class="btn ghost" id="cx">ماه بعد</button></div>
@@ -277,17 +340,28 @@ td input:hover,td input:focus{border-color:#49658d}
     <h2>آمار استراتژی‌ها</h2><div class="scroll" id="st2"></div>
   </div>
 </main>
+<footer id="tradeLogFooter"><div class="footer-title">TradeLog – A Personal Trading Journal</div><div>Created by Hamid Baghban</div><div class="footer-links"><a href="https://github.com/hamid-bh/TradeLog" target="_blank" rel="noopener noreferrer">GitHub Repository</a><a href="https://linkedin.com/in/hamidbaghban/" target="_blank" rel="noopener noreferrer">LinkedIn Profile</a></div><div>© 2026 Hamid Baghban. All rights reserved.</div></footer>
 </div>
 
 <script>
 const KEY='mt4journal:v1';
+const THEME_KEY='tradelog:theme';
+function applyTheme(theme){
+  const t=theme==='light'?'light':'dark';
+  document.documentElement.dataset.theme=t;
+  const b=document.getElementById('themeToggle');
+  if(b){b.setAttribute('aria-pressed',String(t==='dark'));b.setAttribute('aria-label',t==='dark'?'تغییر به تم روشن':'تغییر به تم تیره');b.title=t==='dark'?'تغییر به تم روشن':'تغییر به تم تیره'}
+  try{localStorage.setItem(THEME_KEY,t)}catch(e){}
+}
+try{document.documentElement.dataset.theme=localStorage.getItem(THEME_KEY)==='light'?'light':'dark'}catch(e){document.documentElement.dataset.theme='dark'}
 let db={accounts:{},cur:'',trades:{},balances:{},notes:{},strats:[],ts:{},rk:{},set:{mode:'local',off:2,v:2}},showAll=false,pg=1,PER=15,tab='dash',cal={y:new Date().getFullYear(),m:new Date().getMonth()},lastDay='';
 const pad=n=>String(n).padStart(2,'0'),dayKey=d=>d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());
 const $=s=>document.querySelector(s);
+document.getElementById('themeToggle').addEventListener('click',()=>applyTheme(document.documentElement.dataset.theme==='dark'?'light':'dark'));
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const f=(v,d=2)=>v.toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});
 const L=s=>'<bdi dir="ltr">'+s+'</bdi>';
-const sg=v=>L((v<0?'-':v>0?'+':'')+f(Math.abs(v)));
+const sg=v=>L((v<0?'-':v>0?'+':'')+'$'+f(Math.abs(v)));
 const cls=v=>v>0?'g':v<0?'l':'';
 const usd=v=>L((v<0?'-':'')+'$'+f(Math.abs(v)));
 const num=s=>{const v=parseFloat(String(s).replace(/[\s\u00a0]/g,''));return isNaN(v)?0:v};
@@ -461,12 +535,12 @@ function renderCal(){
       h+=`<div class="day${v?(v.net>=0?' pg':' pl'):''}${k===td?' td':''}"><i>${d}</i><b>${v?v.n:''}</b><s>${v?L((v.net<0?'-':'+')+f(Math.abs(v.net),0)):''}</s></div>`;
     }
     mn+=wn;mt+=wt;
-    h+=`<div class="wk"><span>هفته‌ی ${w+1}</span><b>${wn} معامله</b><span>${wn?sg(wt):''}</span></div>`;
+    h+=`<div class="wk${wn?(wt>0?' pg':wt<0?' pl':''):''}"><span>هفته‌ی ${w+1}</span><b>${wn} معامله</b><span>${wn?sg(wt):''}</span></div>`;
   }
   $('#cal').innerHTML=h;$('#cm').textContent=MN[m]+' '+y;
   $('#cs').innerHTML=`عدد وسط هر روز تعداد معاملات بسته‌شده و عدد پایین سود و زیان همان روز است. مجموع این ماه: ${mn?mn+' معامله در '+md+' روز، '+sg(mt):'بدون معامله'}`;
 }
-function showTab(){['dash','cal','dp','kp','st'].forEach(t=>{$('#t-'+t).hidden=tab!==t});document.querySelectorAll('.tabs button').forEach(b=>b.setAttribute('aria-selected',b.dataset.t===tab))}
+function showTab(){['dash','cal','dp','kp','st','tr'].forEach(t=>{$('#t-'+t).hidden=tab!==t});document.querySelectorAll('.tabs button').forEach(b=>b.setAttribute('aria-selected',b.dataset.t===tab))}
 const tk=t=>t.acc+'_'+t.id,bk=b=>b.acc+'_'+b.id;
 const trs=()=>Object.values(db.trades).filter(t=>t.acc===db.cur).sort((a,b)=>a.close-b.close),bls=()=>Object.values(db.balances).filter(b=>b.acc===db.cur);
 function migrate(){
@@ -585,13 +659,13 @@ function render(){hint();calcMult();
   const by=(key,list,lab)=>list.map(k=>{const a=ts.filter(t=>key(t)===k);return{label:lab(k),v:a.reduce((x,t)=>x+t.net,0),n:a.length}});
   const days=[1,2,3,4,5,6,0].filter(d=>d<6&&d>0||ts.some(t=>new Date(T(t.open)).getUTCDay()===d));
   bars('#wd',by(t=>new Date(T(t.open)).getUTCDay(),days,d=>DN[d]),1);
-  bars('#hr',by(t=>new Date(T(t.open)).getUTCHours(),[...Array(24).keys()],h=>h),3);
+  bars('#hr',by(t=>new Date(T(t.open)).getUTCHours(),[...Array(24).keys()],h=>String(h).padStart(2,'0')+':00'),1);
   groupTable('#gt',ts,t=>t.type==='buy'?'خرید':'فروش','نوع');
   groupTable('#gs',ts,t=>t.sym,'نماد');
   groupTable('#gsl',ts,t=>t.sl?'دارای حد ضرر':'بدون حد ضرر','حد ضرر');groupTable('#gtp',ts,t=>t.tp?'دارای حد سود':'بدون حد سود','حد سود');
   const list=ts.slice().reverse(),P=Math.max(1,Math.ceil(list.length/PER));pg=Math.min(pg,P);const vis=showAll?list:list.slice((pg-1)*PER,pg*PER);
   $('#tb').innerHTML='<tr><th>تیکت</th><th>نماد</th><th>نوع</th><th>حجم</th><th>باز شدن</th><th>قیمت ورود</th><th>قیمت خروج</th><th>حد ضرر</th><th>حد سود</th><th>سود و زیان</th><th>R</th><th>ریسک ($)</th><th>استراتژی</th><th>یادداشت</th></tr>'+
-    vis.map(t=>`<tr><td>${esc(t.id)}</td><td>${esc(t.sym)}</td><td>${t.type==='buy'?'خرید':'فروش'}</td><td>${L(f(t.size))}</td><td>${L(fmt(t.open))}</td><td>${L(f(t.oPrice))}</td><td>${L(f(t.cPrice))}</td><td${t.sl?'':' class="l"'}>${t.sl?L(f(t.sl)):'-'}</td><td>${t.tp?L(f(t.tp)):'-'}</td><td class="${cls(t.net)}">${sg(t.net)}</td><td>${rc(t)}</td><td><input class="rk" data-k="${esc(tk(t))}" value="${db.rk[tk(t)]||''}" placeholder="${riskOf(t)?f(riskOf(t),0):'-'}" aria-label="ریسک دلاری"></td><td>${sel(t)}</td><td><input data-id="${esc(t.id)}" value="${esc(db.notes[t.id]||'')}" placeholder="یادداشت" aria-label="یادداشت معامله ${esc(t.id)}"></td></tr>`).join('');
+    vis.map(t=>`<tr><td>${esc(t.id)}</td><td>${esc(t.sym)}</td><td>${t.type==='buy'?'خرید':'فروش'}</td><td>${L(f(t.size))}</td><td>${L(fmt(t.open))}</td><td>${usd(t.oPrice)}</td><td>${usd(t.cPrice)}</td><td${t.sl?'':' class="l"'}>${t.sl?usd(t.sl):'-'}</td><td>${t.tp?usd(t.tp):'-'}</td><td class="${cls(t.net)}">${sg(t.net)}</td><td>${rc(t)}</td><td><input class="rk" data-k="${esc(tk(t))}" value="${db.rk[tk(t)]||''}" placeholder="${riskOf(t)?f(riskOf(t),0):'-'}" aria-label="ریسک دلاری"></td><td>${sel(t)}</td><td><input data-id="${esc(t.id)}" value="${esc(db.notes[t.id]||'')}" placeholder="یادداشت" aria-label="یادداشت معامله ${esc(t.id)}"></td></tr>`).join('');
   $('#more').hidden=list.length<=PER;$('#more').textContent=showAll?'نمایش صفحه‌بندی':'نمایش همه';
   {const s0=Math.max(1,Math.min(pg-2,P-4)),e0=Math.min(P,s0+4),bt=(p,l,off)=>`<button data-p="${p}"${off?' disabled':''}>${l}</button>`;let h='';
    for(let i=s0;i<=e0;i++)h+=`<button data-p="${i}"${i===pg?' class="cur" aria-current="page"':''}>${i}</button>`;
