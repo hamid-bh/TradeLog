@@ -271,6 +271,17 @@ td input:hover,td input:focus{border-color:#49658d}
 :root[data-theme="light"] .wk.pg{background:rgba(15,123,99,.10);border-color:rgba(15,123,99,.28);color:#0f7b63}
 :root[data-theme="light"] .wk.pl{background:rgba(180,65,47,.09);border-color:rgba(180,65,47,.25);color:#b4412f}
 #hr .ax{font-size:9px}
+
+/* Fine typography and spacing adjustments */
+.big{font-size:45px}
+.chart .ax{font-size:10px}
+.chart .ln{stroke-width:1}
+.chart #vx{stroke-width:.7}
+.chart .fl{font-size:11px}
+#kpt td:nth-child(3){font-size:12px}
+.wrap{padding-bottom:8px}
+#tradeLogFooter{margin-top:14px;padding-bottom:0}
+@media(max-width:720px){.wrap{padding-bottom:8px}.big{font-size:35px}}
 </style>
 </head>
 <body>
@@ -278,10 +289,11 @@ td input:hover,td input:focus{border-color:#49658d}
 <header>
   <div><h1>دفتر معاملات</h1><p id="acct">هنوز گزارشی اضافه نشده است</p></div>
   <div class="act">
-    <button id="themeToggle" class="btn ghost theme-toggle" type="button" aria-label="تغییر به تم روشن" title="تغییر تم" aria-pressed="false"><svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.2 15.3A8.5 8.5 0 0 1 8.7 3.8 8.6 8.6 0 1 0 20.2 15.3Z"/></svg><svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg></button>
+    
     <select id="acs" class="btn ghost" aria-label="انتخاب حساب" hidden></select>
     <label class="btn">افزودن گزارش<input id="file" type="file" accept=".htm,.html" multiple hidden></label>
     <button id="clr" class="btn ghost" hidden>پاک کردن داده‌ها</button>
+    <button id="themeToggle" class="btn ghost theme-toggle" type="button" aria-label="تغییر به تم روشن" title="تغییر تم" aria-pressed="false"><svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.2 15.3A8.5 8.5 0 0 1 8.7 3.8 8.6 8.6 0 1 0 20.2 15.3Z"/></svg><svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg></button>
   </div>
 </header>
 <p id="msg" role="status"></p>
@@ -462,7 +474,7 @@ function stats(ts){
 
 function equity(ts){
   const el=$('#eq'),n=ts.length;let c=0;const pts=ts.map(t=>c+=t.net);
-  const W=800,H=290,pl=52,pr=12,pt=14,pb=24;
+  const W=800,H=280,pl=52,pr=12,pt=14,pb=24;
   const mn=Math.min(0,...pts),mx=Math.max(0,...pts),r=(mx-mn)||1;
   const X=i=>pl+(n>1?i*(W-pl-pr)/(n-1):0),Y=v=>pt+(mx-v)/r*(H-pt-pb);
   const line=pts.map((v,i)=>(i?'L':'M')+X(i).toFixed(1)+' '+Y(v).toFixed(1)).join('');
@@ -488,14 +500,14 @@ function equity(ts){
 }
 
 function bars(id,items,every){
-  const W=600,H=190,pb=22,pt=16,n=items.length;
+  const W=600,H=180,pb=22,pt=16,n=items.length;
   const mx=Math.max(0,...items.map(i=>i.v)),mn=Math.min(0,...items.map(i=>i.v)),r=(mx-mn)||1;
   const Y=v=>pt+(mx-v)/r*(H-pt-pb),z=Y(0),bw=W/n;
   $(id).innerHTML=`<svg viewBox="0 0 ${W} ${H}">`+items.map((it,i)=>{
     const x=i*bw+bw*.15,h=Math.abs(Y(it.v)-z);
     return (it.n?`<rect class="${it.v>=0?'g':'l'}" x="${x}" y="${it.v>=0?Y(it.v):z}" width="${bw*.7}" height="${Math.max(h,1)}"><title>${it.label}: ${f(it.v)} (${it.n})</title></rect>`:'')
-      +(n<=8&&it.n?`<text class="ax" text-anchor="middle" x="${x+bw*.35}" y="${it.v>=0?Y(it.v)-4:z+h+11}">${f(it.v,0)}</text>`:'')
-      +(i%every===0?`<text class="ax" text-anchor="middle" x="${x+bw*.35}" y="${H-6}">${it.label}</text>`:'')}).join('')
+      +(n<=8&&it.n?`<text class="ax" text-anchor="middle" x="${x+bw*.35}" y="${it.v>=0?Y(it.v)-4:z+h+11}">${id==='#wd'?(it.v<0?'-':'')+'$'+f(Math.abs(it.v),0):f(it.v,0)}</text>`:'')
+      +(i%every===0?`<text class="ax" text-anchor="middle" x="${x+bw*.35}" y="${H-5}">${it.label}</text>`:'')}).join('')
     +`<line class="zero" x1="0" x2="${W}" y1="${z}" y2="${z}"/></svg>`;
 }
 
@@ -532,7 +544,7 @@ function renderCal(){
       if(d<1||d>dim){h+='<div class="day e"></div>';continue}
       const k=`${y}-${pad(m+1)}-${pad(d)}`,v=dd[k];
       if(v){wn+=v.n;wt+=v.net;md++}
-      h+=`<div class="day${v?(v.net>=0?' pg':' pl'):''}${k===td?' td':''}"><i>${d}</i><b>${v?v.n:''}</b><s>${v?L((v.net<0?'-':'+')+f(Math.abs(v.net),0)):''}</s></div>`;
+      h+=`<div class="day${v?(v.net>=0?' pg':' pl'):''}${k===td?' td':''}"><i>${d}</i><b>${v?v.n:''}</b><s>${v?L((v.net<0?'-':'+')+'$'+f(Math.abs(v.net),0)):''}</s></div>`;
     }
     mn+=wn;mt+=wt;
     h+=`<div class="wk${wn?(wt>0?' pg':wt<0?' pl':''):''}"><span>هفته‌ی ${w+1}</span><b>${wn} معامله</b><span>${wn?sg(wt):''}</span></div>`;
@@ -589,7 +601,7 @@ function kpTab(s,rs,sa,ts){
     ['Maximum Drawdown','حداکثر افت سرمایه',L(f(s.dd))],['Average R','میانگین R معاملات ('+rs.n+' معامله دارای ریسک)',rs.n?sr(rs.avg):'-'],['Total R','مجموع R معاملات',rs.n?sr(rs.sum):'-'],
     ['Risk/Reward','نسبت ریسک به ریوارد',isNaN(RR)?'-':L('1 : '+f(RR))],['Max Consecutive Losses','بیشترین باخت پشت‌سرهم',s.mls],
     ['Best Strategy','بهترین استراتژی',b?esc(b.name)+' ('+sg(b.net)+')':'-'],['Worst Strategy','ضعیف‌ترین استراتژی',w?esc(w.name)+' ('+sg(w.net)+')':'-']];
-  $('#kpt').innerHTML='<table><tr><th>شاخص</th><th>کاربرد</th><th>مقدار</th></tr>'+R.map(r=>`<tr><td><bdi dir="ltr"><b>${r[0]}</b></bdi></td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join('')+'</table>';
+  $('#kpt').innerHTML='<table><tr><th>شاخص</th><th>کاربرد</th><th>مقدار</th></tr>'+R.map(r=>`<tr><td><bdi dir="ltr"><b>${r[0]}</b></bdi></td><td>${r[1]}</td><td class="${/-\s*(?:\$|\d)/.test(String(r[2]))?'l':''}">${r[2]}</td></tr>`).join('')+'</table>';
 }
 async function syncPull(){
   if(!['localhost','127.0.0.1'].includes(location.hostname))return;
@@ -659,7 +671,7 @@ function render(){hint();calcMult();
   const by=(key,list,lab)=>list.map(k=>{const a=ts.filter(t=>key(t)===k);return{label:lab(k),v:a.reduce((x,t)=>x+t.net,0),n:a.length}});
   const days=[1,2,3,4,5,6,0].filter(d=>d<6&&d>0||ts.some(t=>new Date(T(t.open)).getUTCDay()===d));
   bars('#wd',by(t=>new Date(T(t.open)).getUTCDay(),days,d=>DN[d]),1);
-  bars('#hr',by(t=>new Date(T(t.open)).getUTCHours(),[...Array(24).keys()],h=>String(h).padStart(2,'0')+':00'),1);
+  bars('#hr',by(t=>new Date(T(t.open)).getUTCHours(),[...Array(24).keys()],h=>String(h).padStart(2,'0')),1);
   groupTable('#gt',ts,t=>t.type==='buy'?'خرید':'فروش','نوع');
   groupTable('#gs',ts,t=>t.sym,'نماد');
   groupTable('#gsl',ts,t=>t.sl?'دارای حد ضرر':'بدون حد ضرر','حد ضرر');groupTable('#gtp',ts,t=>t.tp?'دارای حد سود':'بدون حد سود','حد سود');
