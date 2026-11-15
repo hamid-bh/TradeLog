@@ -313,7 +313,7 @@ TradeLog یک پروژه عمومی و متن‌باز است و از مشارک
 
 <ul dir="rtl" align="right">
 <li><strong>Project:</strong> <bdi dir="ltr">TradeLog</bdi></li>
-<li><strong>Current Version:</strong> <bdi dir="ltr">2.0.0</bdi></li>
+<li><strong>Current Version:</strong> <bdi dir="ltr">2.1.1</bdi></li>
 <li><strong>Release Type:</strong> <bdi dir="ltr">Stable Release</bdi></li>
 </ul>
 
